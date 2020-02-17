@@ -1,4 +1,4 @@
-# start-wsb
+# About
 Demo of how to start a Windows Sandbox with custom apps installed in parallel with Chocolatey
 
 If you're not already up to speed with Windows Sandbox, go check out [here](https://techcommunity.microsoft.com/t5/windows-kernel-internals/windows-sandbox/ba-p/301849) first.
@@ -12,7 +12,7 @@ Here, we demonstrate using this combination to install:
 # How to use
 * Clone the repo or otherwise download to your system.
 * Edit the `.wsb` file and edit the `<HostFolder>c:\temp\WindowsSandbox</HostFolder>` line to match the saved location.
-* Edit the `.ps1` file to amend the list of applications that will be installed into the sandbox.
+* [Optional] Edit the `.ps1` file to amend the list of applications that will be installed into the sandbox.
 
 Anything on its own in the $Packages array will be installed in its own runspace: `@("notepadplusplus")`   
 Any array with multiple elements will be installed sequentially in their own runspace: `@("vscode",	"vscode-powershell")`
