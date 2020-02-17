@@ -1,0 +1,11 @@
+<Configuration>
+<MappedFolders>
+   <MappedFolder>
+   <HostFolder>c:\temp\WindowsSandbox</HostFolder>
+   <ReadOnly>true</ReadOnly>
+   </MappedFolder>
+</MappedFolders>
+<LogonCommand>
+<Command>%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "C:\users\wdagutilityaccount\desktop\WindowsSandbox\SBExample.ps1"</Command>
+</LogonCommand>
+</Configuration>
