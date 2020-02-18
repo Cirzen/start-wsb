@@ -1,5 +1,5 @@
 # About
-Demo of how to start a Windows Sandbox with custom apps installed in parallel with Chocolatey
+Demo of how to start a Windows Sandbox with custom apps installed in parallel with Chocolatey & PowerShell 7
 
 If you're not already up to speed with Windows Sandbox, go check out [here](https://techcommunity.microsoft.com/t5/windows-kernel-internals/windows-sandbox/ba-p/301849) first.
 
@@ -7,7 +7,7 @@ Windows Sandbox allows you to specify a number of folders to map into the contai
 Here, we demonstrate using this combination to install:
 * [Chocolatey](https://www.chocolatey.org)
 * [PowerShell 7 preview](https://github.com/PowerShell/PowerShell) (To take advantage of Foreach -Parallel)
-* Followed by any number of desired source packages (in parallel)
+* Followed by any number of desired source packages (in parallel using choco and PS7)
 
 # How to use
 * Clone the repo or otherwise download to your system.
@@ -18,6 +18,8 @@ Anything on its own in the $Packages array will be installed in its own runspace
 Any array with multiple elements will be installed sequentially in their own runspace: `@("vscode",	"vscode-powershell")`
 
 Save and double click the `.wsb` file to launch the container and wait for the script to finish processing!
+
+![alt text](./img/DevopsSandbox_small.gif "Screen capture of parallel script running")
 
 # Caveats
 * Nothing can be installed in the sandbox that requires a reboot, since that will reset the container to the initial state (maybe soon we'll get more persistent containers)
