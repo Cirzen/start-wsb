@@ -6,13 +6,14 @@ $PrePackages = @(
 
 # Parallel package list. Multiple items within nested arrays will be installed serially
 $Packages = @(
-    @("docker-cli"),
+    @("linqpad"),
     @("vscode",	"vscode-powershell"),
-    @("notepadplusplus"),
-    @("conemu"),
-    @("firefox"),
     @("git"),
-    @("procexp")
+    @("docker-cli"),
+    @("firefox"),
+    @("procexp"),
+    @("conemu"),
+    @("notepadplusplus")
 )
 Write-Verbose "Starting stopwatch..." -Verbose
 $Timer = [System.Diagnostics.Stopwatch]::StartNew()
@@ -44,7 +45,14 @@ $7Script = {
     # Restore the string back to the array
     $PackageObject = $Packages | ConvertFrom-Json
     Write-Debug -Message ($PackageObject | ConvertTo-Json) -Verbose
-    $PackageObject | ForEach-Object -Parallel { Foreach ($p in $_) { cinst $p -y --no-progress } } -ThrottleLimit 2
+    $PackageObject | ForEach-Object -Parallel {
+        $sw = [System.Diagnostics.Stopwatch]::StartNew()
+        Foreach ($p in $_)
+        {
+            cinst $p -y --no-progress
+        }
+        "Installation of $($_ -join ",") completed in $($sw.Elapsed.Tostring())" | Out-File -FilePath "$env:UserProfile\Desktop\timings.log" -Force -Append
+     } -ThrottleLimit 2
 }
 
 $FilePath = (resolve-path "C:\Program Files\PowerShell\*\pwsh.exe").Path
